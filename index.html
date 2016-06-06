@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Bootstrap Case</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/master.css">
+    <!--
+    <script>
+        $(document).ready(function() {
+            $('h1').css({
+                'color': 'red'
+            });
+            $('#p1').click(function() {
+                $(this).hide();
+            });
+            $('.pc').on('click', function() {
+                $('#p1').show();
+            });
+        })
+    </script>
+  -->
+</head>
+
+<body>
+
+    <div class="container-fluid">
+
+        <div class="imgCenter">
+            <div class="row">
+                <h3></h3>
+            </div>
+            <div style=c lass="row">
+
+                <form>
+                    <h2>Escolha uma opção</h2>
+                    <input id="opc1" type="radio" name="radio-box" value="male">
+                    <label for="opc1"> Teste</label>
+                    <br>
+                    <input id="opc2" type="radio" name="radio-box" value="female">
+                    <label for="opc2"></label>
+                    <br>
+                    <input id="opc3" type="radio" name="radio-box" value="other">
+                    <label for="opc3"></label>
+                    <br>
+                    <button class='btn btn-danger' onclick="loadImagem('','','','','')" type="button" name="button">Cancelar</button>
+                    <button class='btn btn-success' onclick="contaPonto();" type="button" name="button">Confirmar</button>
+                </form>
+            </div>
+        </div>
+        <!-- ao clicar na imagem ela será ampliada aqui -->
+
+        <header class="row">
+
+
+        </header>
+        <div class="row">
+            <div role="main" class="col-md-10">
+
+                <div id="cena0" class="body-main">
+                    <img class="img-body" src="imagens/casa.png" />
+                    <div id="porta1" class="destaca-item">
+                        <a href="#" onclick="loadCena1('cena1');"><img src="imagens/porta1-1.png" alt="teste" /></a>
+                    </div>
+                </div>
+
+
+                <div id="cena1" class="body-main">
+                    <img class="img-body" src="imagens/sala1.png" />
+                    <div id="cena1-planta" class="destaca-item">
+                        <a href="#" onclick="loadCena('cena3');"><img src="imagens/sala1-planta.png" alt="teste" /></a>
+                    </div>
+
+                    <div id="cena1-papel" class="destaca-item">
+                        <a href="#" onclick="loadItem('imagens/itens/carta.png','cena1', 'cena1-papel');"><img src="imagens/sala1-papel.png" alt="teste" /></a>
+                    </div>
+
+                </div>
+
+
+
+
+                <div id="cena3" class="body-main">
+                    <img class="img-body" src="imagens/cena3.png" />
+                    <div id="cena3-batom" class="destaca-item">
+                        <a href="#" onclick="loadItem('imagens/itens/batom.png','cena1', 'cena3-batom');"><img src="imagens/cena3-batom.png" alt="teste" /></a>
+                    </div>
+
+
+                </div>
+
+
+
+            </div>
+            <aside role="complementary" class="col-md-2">
+                <div class="row">
+
+
+
+                    <div id="points">
+                        0
+                    </div>
+
+                    <img style="width=80%" src="imagens/backgrounds/inventario.png" alt="" />
+
+                    <a href="#" onclick="preLoad('#item-0');">
+                        <img id="item-0" class="img-itens" src="imagens/backgrounds/itens.png" alt="" /></a>
+
+                    <a href="#" onclick="preLoad('#item-1');">
+                        <img id="item-1" class="img-itens" src="imagens/backgrounds/itens.png" alt="" /></a>
+                    <img id="item-2" class="img-itens" src="imagens/backgrounds/itens.png" alt="" />
+                    <img id="item-3" class="img-itens" src="imagens/backgrounds/itens.png" alt="" />
+                    <img id="item-4" class="img-itens" src="imagens/backgrounds/itens.png" alt="" />
+                    <img id="item-5" class="img-itens" src="imagens/backgrounds/itens.png" alt="" />
+                    <img id="item-6" class="img-itens" src="imagens/backgrounds/itens.png" alt="" />
+                    <img id="item-7" class="img-itens" src="imagens/backgrounds/itens.png" alt="" />
+                    <img id="item-8" class="img-itens" src="imagens/backgrounds/itens.png" alt="" />
+                    <img id="item-9" class="img-itens" src="imagens/backgrounds/itens.png" alt="" />
+                    <img id="btn-avancar" style="width=80%" src="imagens/botoes/seta-avacar.png" alt="" />
+
+
+                </div>
+
+            </aside>
+
+        </div>
+        <footer class="row">
+
+        </footer>
+
+
+    </div>
+
+    <script src="js/jquery-1.12.4.min.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script src="js/function.js"></script>
+
+    <script>
+        function loadCena(v) {
+            document.getElementById("cena0").style.display = "none";
+            document.getElementById("cena1").style.display = "none";
+            document.getElementById("cena3").style.display = "none";
+            document.getElementById(v).style.display = "block";
+
+            //  $('#cena1').css({'display': 'block'});
+
+            //$('#item-0').attr("src", "imagens/itens/batom.png");
+        }
+    </script>
+
+    <script>
+        function loadItem(v, cena, disable) {
+            for (i = 0; i < 10; i++) {
+                if ($('#item-' + i).attr('src') === v) {
+                    loadCena(cena);
+                    return;
+                }
+            }
+            for (i = 0; i < 10; i++) {
+                if ($('#item-' + i).attr('src') === "imagens/backgrounds/itens.png") {
+                    $('#item-' + i).attr("src", v);
+                    $('#' + disable).attr("disabled", true);
+                    break;
+                }
+            }
+            loadCena(cena);
+        }
+    </script>
+
+    <script type="text/javascript">
+        function loadImagem(imgFile, t1, op1, op2, op3) {
+            var e = document.getElementsByClassName("imgCenter")[0];
+            e.style.backgroundImage = 'url("' + imgFile + '")'
+
+
+            var hText = e.getElementsByTagName('h3')[0];
+            hText.innerHTML = t1;
+
+
+            $('label[for=opc1]').html(op1);
+            $('label[for=opc2]').html(op2);
+            $('label[for=opc3]').html(op3);
+
+            if (e.style.display == 'table')
+                e.style.display = 'none';
+            else
+                e.style.display = 'table';
+
+        }
+    </script>
+
+    <script type="text/javascript">
+        function preLoad(v) {
+            var img, h3, op1, op2, op3;
+            if ($(v).attr('src') == "imagens/backgrounds/itens.png"){
+                return;
+            } else
+            if ($(v).attr('src') == "imagens/itens/batom.png") {
+                if (ler('batom'))
+                   return;
+                img = 'imagens/itens/grandes/batom.png';
+                h3 = 'Pensando em uma página Web, que elemento eu seria?';
+                op1 = ' Html';
+                op2 = ' CSS';
+                op3 = ' Javascript';
+                loadOpcao(1);
+                loadImagem(img, h3, op1, op2, op3);
+                adicionar('batom','true');
+
+
+            } else if ($(v).attr('src') == "imagens/itens/carta.png") {
+              if (ler('carta'))
+                 return;
+                img = 'imagens/itens/grandes/carta.png';
+                h3 = 'Pensando em uma página Web, que elemento eu seria?';
+                op1 = ' CSS';
+                op2 = ' Javascript';
+                op3 = ' Html';
+                loadOpcao(2);
+                loadImagem(img, h3, op1, op2, op3);
+                adicionar('carta','true');
+            }
+
+          }
+    </script>
+
+    <script type="text/javascript">
+        function loadOpcao(v) {
+            var radios = document.getElementsByName("radio-box");
+            radios[0].value = 'falso';
+            radios[1].value = 'falso';
+            radios[2].value = 'falso';
+            radios[v].value = 'verdadeiro';
+        }
+    </script>
+    <script type="text/javascript">
+        function contaPonto() {
+            var radios = document.getElementsByName("radio-box");
+            for (var i = 0; i < radios.length; i++) {
+                if (radios[i].checked) {
+                    loadImagem('', '', '', '', '');
+                    if (radios[i].value === "verdadeiro") {
+                      var pt = document.getElementById("points").innerHTML;
+                      document.getElementById("points").innerHTML = parseInt(pt) + 1;
+
+                      if (parseInt(pt)+1 > 1)
+                          document.getElementById("btn-avancar").style.display = 'block';
+
+
+                    }
+
+
+                }
+            }
+        }
+    </script>
+
+<script type="text/javascript">
+function adicionar(key, val) {
+
+
+  localStorage.setItem(key, val);
+//  alert("Item adicionado.");
+  txtChave.value = txtValor.value = "";
+
+
+
+
+}
+</script>
+
+<script type="text/javascript">
+function ler(key )
+{
+  var obj = localStorage.getItem(key);
+  if(obj != null)
+      return true;
+  else
+      return false;
+}
+</script>
+<script type="text/javascript">
+function limpar(){
+  localStorage.clear();
+
+}
+</script>
+
+<script type="text/javascript">
+  function loadCena1(v) {
+      loadCena(v);
+      limpar();
+  }
+
+</script>
+</body>
+
+</html>
